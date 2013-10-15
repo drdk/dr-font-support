@@ -11,6 +11,7 @@ The detection method is selfcontained and exposed via UMD as a function that acc
 
 ### Vanilla JS
 
+```javascript
 fontSupport(function (support) {
   if (support.woff) {
     // woff is supported
@@ -22,6 +23,7 @@ fontSupport(function (support) {
     // svg is supported
   } 
 });
+```
 
 ### AMD
 
