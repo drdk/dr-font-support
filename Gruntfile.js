@@ -2,7 +2,8 @@
 module.exports = function(grunt) {
 	var fs = require("fs"),
 		path = require("path"),
-		cleanCSS = require("clean-css");
+		cleanCSS = require("clean-css"),
+		inline = require("dr-webfont-inliner");
 
 	var fontName = "test-webfont",
 		stylesheet = "fonts.css";
@@ -45,25 +46,7 @@ module.exports = function(grunt) {
 	});
 
 	grunt.registerTask("inline-fonts", "Inline fonts into stylesheet", function () {
-		
-		var input = stylesheet,
-			root = input.replace(/(^|\/)[^\/]+$/, "$1"),
-			output = input.replace(/(\.[^.]+)$/, "-inline$1"),
-			css = fs.readFileSync(input, {encoding: "utf8"});
-
-		css = css.replace(/(url\(["']?)([^"']+.(woff|ttf|svg))(?:\??#[^"']+)?(["']?\))/g, function (m, cssPrefix, url, type, cssSuffix) {
-			url = path.resolve(root, url);
-			var data = fs.readFileSync(url),
-				mime = {
-					woff: "application/x-font-woff",
-					ttf: "application/x-font-ttf",
-					svg: "image/svg+xml"
-				}[type];
-			return cssPrefix + "data:" + mime + ";base64," + encodeURIComponent(data.toString('base64')) + cssSuffix;
-		});
-
-		fs.writeFileSync(output, css);
-
+		inline(stylesheet);
 	});
 
 	grunt.registerTask("inline-css", "Inline CSS into script", function () {
@@ -74,7 +57,7 @@ module.exports = function(grunt) {
 		if (!fs.existsSync("dist")) {
 			fs.mkdir("dist");
 		}
-		fs.writeFileSync("dist/" + "index.js", js);
+		fs.writeFileSync("dist/index.js", js);
 	});
 
 	// Default task.
