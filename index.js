@@ -2,22 +2,67 @@
 	"use strict";
 
 	define(function() {
+	
+		var doc = global.document,
+			html = doc.documentElement,
+			body, fakeBody, div, span,
+			overflow,
+			style = "&#173;<style>{{css}}</style>",
+			formats = ["woff", "ttf", "svg"],
+			isComplete = false,
+			isRunning = false,
+			callbacks = [],
+			support = {};
 
-		return function (callback) {
-			var doc = global.document,
-				html = doc.documentElement,
-				body = doc.body,
-				fakeBody = body || doc.createElement("body"),
-				div = doc.createElement("div"),
-				span = doc.createElement("span"),
-				overflow,
-				style = "&#173;<style>{{css}}</style>",
-				formats = ["woff", "ttf", "svg"],
-				support = {
-						woff: false,
-						ttf: false,
-						svg: false
-					};
+		return function (callback, returnOption) {
+
+			if (isComplete) {
+				handleCallbacks();
+			}
+			else {
+			
+				callbacks.push({callback: callback, option: returnOption || null});
+				
+				if (isRunning) {
+					return;
+				}
+				
+				detect();
+			}
+
+		};
+		
+		function formatResult (option) {
+			var result;
+			if (!option) {
+				result = support;
+			}
+			else if (typeof option == "string") {
+				result = support[option];
+			}
+			else {
+				result = option.filter(function (format) {
+					return support[format];
+				});
+				result = 0 in result && result[0] || null;
+			}
+			return result;
+		}
+		
+		function handleCallbacks () {
+			var data;
+			while (callbacks.length) {
+				data = callbacks.shift();
+				data.callback(formatResult(data.option));
+			}
+		}
+		
+		function detect () {
+			isRunning = true;
+			body = doc.body,
+			fakeBody = body || doc.createElement("body"),
+			div = doc.createElement("div"),
+			span = doc.createElement("span"),
 
 			span.innerHTML = ".";
 
@@ -56,24 +101,30 @@
 					}
 					i++;
 				}
-				if (detected || new Date() - start > timeout) {
+				if (detected) {
+					isComplete = true;
+					cleanup();
+				}
+				else if (new Date() - start > timeout) {
 					cleanup();
 				}
 				else {
 					setTimeout(check, 100);
 				}
 			}());
-
-			function cleanup() {
-				if (!body) {
-					fakeBody.parentNode.removeChild(fakeBody);
-					html.style.overflow = overflow;
-				} else {
-					div.parentNode.removeChild(div);
-				}
-				callback(support);
-			}
 		}
+		
+		function cleanup() {
+			if (!body) {
+				fakeBody.parentNode.removeChild(fakeBody);
+				html.style.overflow = overflow;
+			} else {
+				div.parentNode.removeChild(div);
+			}
+			handleCallbacks();
+			isRunning = false;
+		}
+		
 	});
 
 }(this, typeof define == "function" && define.amd ? define : function(factory) { this.fontSupport = factory() } ));

@@ -13,8 +13,9 @@ module.exports = function(grunt) {
 		// Task configuration.
 		uglify: {
 			options: {
-				mangle: false,
-				report: "gzip"
+				compress: true/*,
+				mangle: true
+				*/
 			},
 			"default": {
 				files: {
@@ -22,7 +23,7 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-		clean: ["test-webfont.ttf", "test-webfont.woff", "fonts-inline.css", "dist/index.js"]
+		clean: ["test-webfont.ttf", "test-webfont.woff", "fonts-inline.css"]
 	});
 
 	grunt.loadNpmTasks("grunt-contrib-uglify");
