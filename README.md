@@ -1,7 +1,7 @@
 dr-font-support
 ===============
 
-Clientside script to detect woff, ttf or svg font support.
+Clientside script to detect woff2, woff, ttf or svg font support.
 
 The detection method is selfcontained and exposed via UMD as a function that accepts a callback. It clocks in at 5.5kb minified and 2.8kb gzipped.
 
@@ -26,6 +26,9 @@ With `returnOption` as null (default):
 
 ```javascript
 fontSupport(function (supported) {
+	  if (supported.woff2) {
+	    // woff2 is supported
+	  } 
 	  if (supported.woff) {
 	    // woff is supported
 	  } 
@@ -98,3 +101,15 @@ The basic template for testing was hoisted from the [Modernizr](https://github.c
 
 #### Font generation
 Uses [svg2ttf](https://github.com/fontello/svg2ttf) and [ttf2woff](https://github.com/fontello/ttf2woff) from [Vitaly](https://github.com/fontello)'s brilliant collection of libraries.
+
+
+
+---
+
+## Changelog
+
+### 0.2.0
+
+Features:
+
+* woff2 added.

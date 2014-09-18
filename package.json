@@ -1,6 +1,6 @@
 {
   "name": "dr-font-support",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Detects supported font formats",
   "main": "index.js",
   "author": "rafl@dr.dk",
@@ -13,6 +13,6 @@
     "grunt": "~0.4.1",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-uglify": "~0.2.4",
-    "dr-webfont-inliner": "~0.2.0"
+    "dr-webfont-inliner": "~0.3.0"
   }
 }

@@ -3,16 +3,16 @@
 
 	define(function() {
 	
-		var doc = global.document,
-			html = doc.documentElement,
-			body, fakeBody, div, span,
-			overflow,
-			style = "&#173;<style>{{css}}</style>",
-			formats = ["woff", "ttf", "svg"],
-			isComplete = false,
-			isRunning = false,
-			callbacks = [],
-			support = {};
+		var doc = global.document;
+		var html = doc.documentElement;
+		var body, fakeBody, div, span;
+		var overflow;
+		var style = "&#173;<style>{{css}}</style>";
+		var formats = ["woff2", "woff", "ttf", "svg"];
+		var isComplete = false;
+		var isRunning = false;
+		var callbacks = [];
+		var support = {};
 
 		return function (callback, returnOption) {
 
@@ -76,13 +76,13 @@
 				html.appendChild(fakeBody);
 			}
 
-			var i = 0,
-				l = formats.length,
-				countdown = l,
-				clones = [],
-				detected,
-				start = new Date(),
-				timeout = 2000;
+			var i = 0;
+			var l = formats.length;
+			var countdown = l;
+			var clones = [];
+			var detected;
+			var start = new Date();
+			var timeout = 2000;
 
 			while (i < l) {
 				(function (format, clone) {

@@ -1,4 +1,9 @@
 @font-face {
+    font-family: "test-woff2";
+    src: url("test-webfont.woff2") format("woff2");
+    font-weight: normal;
+}
+@font-face {
     font-family: "test-woff";
     src: url("test-webfont.woff") format("woff");
     font-weight: normal;
@@ -13,9 +18,12 @@
     src: url("test-webfont.svg") format("svg");
     font-weight: normal;
 }
-.test-woff, .test-ttf, .test-svg {
+.test-woff2, .test-woff, .test-ttf, .test-svg {
 	font-size: 10px;
 	font-weight: normal;
+}
+.test-woff2 {
+    font-family: "test-woff2";
 }
 .test-woff {
 	font-family: "test-woff";
