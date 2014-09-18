@@ -1,11 +1,11 @@
 {
   "name": "dr-font-support",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Detects supported font formats",
   "main": "index.js",
   "author": "rafl@dr.dk",
   "license": "BSD",
-  "dependencies": {
+  "devDependencies": {
     "svg2ttf": "~1.0.6",
     "ttf2eot": "~1.2.0",
     "ttf2woff": "~1.1.0",
