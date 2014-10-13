@@ -30,14 +30,14 @@ fs.readFile(file, {encoding: "utf8"}, function (err, svg) {
 			}
 		}, function () {
 				
-			inline("fonts.css");
-
 			async.parallel({
 				js: function (callback) {
 					fs.readFile("index_template.js", {encoding: "utf8"}, callback);
 				},
 				css: function (callback) {
-					fs.readFile("fonts-inline.css", {encoding: "utf8"}, callback);
+					inline("fonts.css", function (css) {
+						callback(null, css);
+					});
 				}
 			},
 			function (err, results) {
