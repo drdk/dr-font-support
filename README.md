@@ -86,10 +86,10 @@ npm install
 Build script:
 
 ```
-grunt
+node build.js
 ```
 
-The built script will then be found in "./dist" ready for use.
+The built `index.js` script will then be ready for use.
 
 
 
@@ -107,6 +107,14 @@ Uses [svg2ttf](https://github.com/fontello/svg2ttf) and [ttf2woff](https://githu
 ---
 
 ## Changelog
+
+
+### 0.3.0
+
+Changes:
+
+* Removed grunt as dependency.
+
 
 ### 0.2.0
 
