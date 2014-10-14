@@ -127,4 +127,4 @@
 		
 	});
 
-}(this, typeof define == "function" && define.amd ? define : function(factory) { this.fontSupport = factory() } ));
+}(window, typeof define == "function" && define.amd ? define : function(factory) { window.fontSupport = factory() } ));
