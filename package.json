@@ -1,6 +1,6 @@
 {
   "name": "dr-font-support",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Detects supported font formats",
   "main": "index.js",
   "author": "rafl@dr.dk",
@@ -10,7 +10,7 @@
     "ttf2eot": "~1.2.0",
     "ttf2woff": "~1.1.0",
     "clean-css": "~1.1.1",
-    "dr-webfont-inliner": "~0.4.0"
+    "dr-webfont-inliner": "~0.4.1"
   },
   "dependencies": {
     "async": "^0.9.0"
