@@ -41,9 +41,17 @@
 				result = support[option];
 			}
 			else {
-				result = option.filter(function (format) {
-					return support[format];
-				});
+				result = [];
+				var i = 0;
+				var l = option.length;
+				while (i < l) {
+					(function (format) {
+						if (support[format]) {
+							result.push(format);
+						}
+					}(option[i++]));
+					i++;
+				}
 				result = 0 in result && result[0] || null;
 			}
 			return result;
