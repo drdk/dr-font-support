@@ -1,6 +1,6 @@
 {
   "name": "dr-font-support",
-  "version": "0.3.2",
+  "version": "0.3.1",
   "description": "Detects supported font formats",
   "main": "index.js",
   "author": "rafl@dr.dk",
