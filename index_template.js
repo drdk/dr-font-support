@@ -15,13 +15,13 @@
 		var support = {};
 
 		return function (callback, returnOption) {
+			
+			callbacks.push({callback: callback, option: returnOption || null});
 
 			if (isComplete) {
 				handleCallbacks();
 			}
 			else {
-			
-				callbacks.push({callback: callback, option: returnOption || null});
 				
 				if (isRunning) {
 					return;
@@ -50,7 +50,6 @@
 							result.push(format);
 						}
 					}(option[i++]));
-					i++;
 				}
 				result = 0 in result && result[0] || null;
 			}

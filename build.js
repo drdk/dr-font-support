@@ -9,6 +9,8 @@ var ttf = require("./lib/ttf");
 var woff = require("./lib/woff");
 var woff2 = require("./lib/woff2");
 
+var ttfpatch = require("nodettfpatch");
+
 var file = "./test-webfont.svg";
 
 var filebase = path.basename(file, path.extname(file));
@@ -21,15 +23,21 @@ fs.readFile(file, {encoding: "utf8"}, function (err, svg) {
 
 	ttf(file, svg, function () {
 
+		var ttffile = filebase + ".ttf";
+		
+
 		async.parallel({
 			woff: function (callback) {
-				woff(filebase + ".ttf", callback);
-			},
+				woff(ttffile, callback);
+			}/*,
 			woff2: function (callback) {
-				woff2(filebase + ".ttf", callback);
-			}
+				woff2(ttffile, callback);
+			}*/
 		}, function () {
-				
+			
+
+			ttfpatch(ttffile, 0);
+
 			async.parallel({
 				js: function (callback) {
 					fs.readFile("index_template.js", {encoding: "utf8"}, callback);

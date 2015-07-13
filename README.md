@@ -108,6 +108,17 @@ Uses [svg2ttf](https://github.com/fontello/svg2ttf) and [ttf2woff](https://githu
 
 ## Changelog
 
+### 0.3.5
+
+Fixed:
+
+* IE11 bug: `@font-face failed OpenType embedding permission check. Permission must be Installable.` via [nodettfpatch](https://github.com/GizmoWeb/nodeTTFPatch).
+* Subsequent calls to `fontSupport` didn't execute callbacks.
+* `returnOption` of array now returned the wrong result.
+
+Changes:
+
+* WOFF2 now needs to be built manually; needs tooling to automate this :( 
 
 ### 0.3.0
 
