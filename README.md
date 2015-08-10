@@ -108,6 +108,12 @@ Uses [svg2ttf](https://github.com/fontello/svg2ttf) and [ttf2woff](https://githu
 
 ## Changelog
 
+### 0.3.6
+
+Fixed:
+
+* Added pre-generated WOFF2 file to avoid errors on manual builds.
+
 ### 0.3.5
 
 Fixed:

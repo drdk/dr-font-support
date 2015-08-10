@@ -2,5 +2,6 @@
 index_template.js
 fonts.css
 test-webfont.svg
+test-webfont.woff2
 test
 Gruntfile.js
