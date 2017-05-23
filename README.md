@@ -28,16 +28,16 @@ With `returnOption` as null (default):
 fontSupport(function (supported) {
 	  if (supported.woff2) {
 	    // woff2 is supported
-	  } 
+	  }
 	  if (supported.woff) {
 	    // woff is supported
-	  } 
+	  }
 	  if (supported.ttf) {
 	    // ttf is supported
-	  } 
+	  }
 	  if (supported.svg) {
 	    // svg is supported
-	  } 
+	  }
 });
 ```
 
@@ -59,7 +59,7 @@ fontSupport(function (supported) {
 		case "woff":
 			// do stuff
 			break;
-	  		
+
 		case "ttf":
 			// do other stuff
 			break;
@@ -108,6 +108,12 @@ Uses [svg2ttf](https://github.com/fontello/svg2ttf) and [ttf2woff](https://githu
 
 ## Changelog
 
+### 0.4.0
+
+Changes:
+
+* Updated devDependencies.
+
 ### 0.3.6
 
 Fixed:
@@ -124,7 +130,7 @@ Fixed:
 
 Changes:
 
-* WOFF2 now needs to be built manually; needs tooling to automate this :( 
+* WOFF2 now needs to be built manually; needs tooling to automate this :(
 
 ### 0.3.0
 

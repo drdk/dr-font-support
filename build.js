@@ -2,7 +2,7 @@ var fs = require("fs");
 var path = require("path");
 
 var async = require("async");
-var cleanCSS = require("clean-css");
+var CleanCSS = require("clean-css");
 var inline = require("dr-webfont-inliner");
 
 var ttf = require("./lib/ttf");
@@ -24,17 +24,16 @@ fs.readFile(file, {encoding: "utf8"}, function (err, svg) {
 	ttf(file, svg, function () {
 
 		var ttffile = filebase + ".ttf";
-		
 
 		async.parallel({
 			woff: function (callback) {
 				woff(ttffile, callback);
-			}/*,
+			},
 			woff2: function (callback) {
 				woff2(ttffile, callback);
-			}*/
+			}
 		}, function () {
-			
+
 
 			ttfpatch(ttffile, 0);
 
@@ -54,8 +53,8 @@ fs.readFile(file, {encoding: "utf8"}, function (err, svg) {
 					throw(err);
 				}
 
-				results.css = cleanCSS.process(results.css);
-				results.js = results.js.replace("{{css}}", results.css.replace(/"/g, "\\\""));
+				results.css = new CleanCSS().minify(results.css);
+				results.js = results.js.replace("{{css}}", results.css.styles.replace(/"/g, "\\\""));
 				fs.writeFile("index.js", results.js);
 
 			});
@@ -66,4 +65,3 @@ fs.readFile(file, {encoding: "utf8"}, function (err, svg) {
 
 
 });
-
